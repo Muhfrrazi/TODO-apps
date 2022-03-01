@@ -45,14 +45,8 @@ document.addEventListener(RENDER_EVENT, function () {
 
     if (todoItem.isCompleted == false) {
       uncompletedTODOList.append(todoElement);
-      undoButton.addEventListener("click", function () {
-        undoTaskFromCompleted(todoObject.id);
-      });
     } else {
       completedTODOList.append(todoElement);
-      trashButton.addEventListener("click", function () {
-        removeTaskFromCompleted(todoObject.id);
-      });
     }
   }
 });
@@ -80,7 +74,7 @@ function makeTodo(todoObject) {
       undoTaskFromCompleted(todoObject.id);
     });
 
-    const trashButton = document.createElement.createElement("button");
+    const trashButton = document.createElement("button");
     trashButton.classList.add("trash-button");
     trashButton.addEventListener("click", function () {
       removeTaskFromCompleted(todoObject.id);
@@ -91,8 +85,9 @@ function makeTodo(todoObject) {
     const checkButton = document.createElement("button");
     checkButton.classList.add("check-button");
     checkButton.addEventListener("click", function () {
-      addTackToCompleted(todoObject.id);
+      addTaskToCompleted(todoObject.id);
     });
+
     container.append(checkButton);
   }
   return container;
@@ -107,7 +102,16 @@ function findTodo(todoId) {
   return null;
 }
 
-function addTaskCompleted(todoId) {
+function findTodoIndex(todoId) {
+  for (index in todos) {
+    if (todos[index].id === todoId) {
+      return index;
+    }
+  }
+  return -1;
+}
+
+function addTaskToCompleted(todoId) {
   const todoTarget = findTodo(todoId);
   if (todoTarget == null) return;
 
