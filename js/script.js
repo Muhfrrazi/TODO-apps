@@ -124,6 +124,7 @@ function addTaskToCompleted(todoId) {
 
   todoTarget.isCompleted = true;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  alert("Kegiatan sudah dilakukan");
   saveData();
 }
 
@@ -133,6 +134,7 @@ function removeTaskFromCompleted(todoId) {
   todos.splice(todoTarget, 1);
 
   document.dispatchEvent(new Event(RENDER_EVENT));
+  alert("Data telah dihapus");
   saveData();
 }
 
@@ -142,6 +144,7 @@ function undoTaskFromCompleted(todoId) {
 
   todoTarget.isCompleted = false;
   document.dispatchEvent(new Event(RENDER_EVENT));
+  alert("Kegiatan dikembalikan menjadi belum selesai");
   saveData();
 }
 
@@ -163,6 +166,7 @@ function isStorageExits() /*boolean*/ {
 
 document.addEventListener(SAVED_EVENT, function () {
   console.log(localStorage.getItem(STORAGE_KEY));
+  alert("Kegiatan telah ditambahkan");
 });
 
 function loadDataFromStorage() {
